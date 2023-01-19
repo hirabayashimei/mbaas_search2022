@@ -17,43 +17,80 @@
 
     function fetchAll() {
       let TestDataClass = ncmb.DataStore(db);
-      TestDataClass.order("name", false).fetchAll()
+      TestDataClass.order("num",false).fetchAll()
         .then(function(results) {
           showResults(results);
         })
     }
-
+ 
     function searchName() {
-     let name = $("#name").val();
+     let input = $("#name").val();
      let TestDataClass = ncmb.DataStore(db);
-     TestDataClass.equalTo("name", name).fetchAll()
+     TestDataClass.regularExpressionTo("name", input).fetchAll()
        .then(function(results){
          showResults(results);
         })
    }
 
-    function searchLevel() {
-     let name = parseInt($("#level").val());
+    function searchName1() {
+     let input = $("#name1").val();
      let TestDataClass = ncmb.DataStore(db);
-     TestDataClass.equalTo("level", level).fetchAll()
+     TestDataClass.regularExpressionTo("name1", input).fetchAll()
        .then(function(results){
          showResults(results);
         })
    }
 
-    function searchLevelLT() {
-     let level = parseInt($("#level").val());
+    function searchJob() {
+     let input = $("#job").val();
      let TestDataClass = ncmb.DataStore(db);
-     TestDataClass.lessThan("level", level).fetchAll()
+     TestDataClass.regularExpressionTo("job", input).fetchAll()
        .then(function(results) {
          showResults(results);
       })
    }
 
-   function searchLevelGT() {
-     let level = parseInt($("#level").val(), 10);
+   function searchAge() {
+     let input = $("#age").val();
      let TestDataClass = ncmb.DataStore(db);
-     TestDataClass.greaterThan("level", level).fetchAll()
+     TestDataClass.equalTo("age", input).fetchAll()
+       .then(function(results) {
+         showResults(results);
+     })
+   }
+
+
+    function searchName3() {
+     let name = $("#name").val();
+     let TestDataClass = ncmb.DataStore(db);
+     TestDataClass.order("name", false).fetchAll()
+       .then(function(results){
+         showResults(results);
+        })
+   }
+
+    function searchName4() {
+     let name1 = $("#name1").val();
+     let TestDataClass = ncmb.DataStore(db);
+     TestDataClass.order("name1", false).fetchAll()
+       .then(function(results){
+         showResults(results);
+        })
+   }
+
+    function searchJob1() {
+     let job = $("#job").val();
+     let TestDataClass = ncmb.DataStore(db);
+     TestDataClass.order("job", false).fetchAll()
+       .then(function(results) {
+         showResults(results);
+      })
+   }
+
+   function searchAge1() {
+     let age = $("#age").val();
+     let TestDataClass = ncmb.DataStore(db);
+     TestDataClass.order("age", false).fetchAll()
        .then(function(results) {
          showResults(results);
      })
@@ -64,14 +101,14 @@
 
     function showResults(results) {
       // テーブルのヘッダを生成
-      let msg = "<table><tr><th>name</th><th>Lvl</th><th>attack</th><th>defence</th></tr>";
+      let msg = "<table><tr><th>name</th><th>name1</th><th>job</th><th>age</th></tr>";
       for (let i = 0; i < results.length; i++) {
         // 各データを収めた表の列を生成
         msg += "<tr>";
-        msg += "<td>" + results[i].name + "</td>";
-        msg += "<td class='num'>" + results[i].level + "</td>";
-        msg += "<td class='num'>" + results[i].attack + "</td>";
-        msg += "<td class='num'>" + results[i].defence + "</td>";
+        msg += "<td class='num'>" + results[i].name + "</td>";
+        msg += "<td class='num'>" + results[i].name1 + "</td>";
+        msg += "<td class='num'>" + results[i].job + "</td>";
+        msg += "<td class='num'>" + results[i].age + "</td>";
         msg += "</tr>";
       }
       // テーブルのテイラを生成
@@ -85,21 +122,37 @@
   <h1>mBaaS search</h1>
   <div>
     <label for="name">name:</label>
-    <input id="name" type="text" placeholder="monster name">
+    <input id="name" type="text" placeholder="name">
   </div>
   <div>
-    <label for="level">level:</label>
-    <input id="level" type="number" placeholder="monster level">
+    <label for="name1">name1:</label>
+    <input id="name1" type="text" placeholder=" honnmyou">
+  </div>
+   <div>
+    <label for="job">job:</label>
+    <input id="job" type="text" placeholder="job">
+  </div>
+   <div>
+    <label for="age">age:</label>
+    <input id="age" type="text" placeholder="age">
   </div>
   <div id="button">
-    <button class="btn" onclick="fetchAll()">Fetch All</button>
-    <button class="btn" onclick="searchName()">Name</button>
+    <button class="btn" onclick="fetchAll()">8LOOM
+    </button>
+    <button class="btn" onclick="searchName()">名前</button>
+    <button class="btn" onclick="searchName1()">本名</button>
     <br>
-    <button class="btn" onclick="searchLevelLT()">Level &lt;</button>
-    <button class="btn" onclick="searchLevel()">Level</button>
-     <button class="btn" onclick="searchLevelLT()">&gt;Level </button>
+    <button class="btn" onclick="searchJob()">事務所</button>
+    <button class="btn" onclick="searchAge()">年齢</button>
   </div>
   <div id="message">message area</div>
+  <div id="button">
+    
+    <button class="btn" onclick="searchName3()">名前順</button>
+    <button class="btn" onclick="searchName4()">本名順</button>
+    <button class="btn" onclick="searchJob1()">事務所順</button>
+    <button class="btn" onclick="searchAge1()">年齢順 </button>
+  </div>
 </body>
 
 </html>
