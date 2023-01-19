@@ -26,7 +26,7 @@
     function searchName() {
      let input = $("#name").val();
      let TestDataClass = ncmb.DataStore(db);
-     TestDataClass.regularExpressionTo("name", input).fetchAll()
+     TestDataClass.regularExpressionTo("name1", input).fetchAll()
        .then(function(results){
          showResults(results);
         })
@@ -42,9 +42,9 @@
    }
 
     function searchJob() {
-     let input = $("#job").val();
+     let input = $("#flower").val();
      let TestDataClass = ncmb.DataStore(db);
-     TestDataClass.regularExpressionTo("job", input).fetchAll()
+     TestDataClass.regularExpressionTo("flower", input).fetchAll()
        .then(function(results) {
          showResults(results);
       })
@@ -101,7 +101,7 @@
 
     function showResults(results) {
       // テーブルのヘッダを生成
-      let msg = "<table><tr><th>name</th><th>name1</th><th>job</th><th>age</th></tr>";
+      let msg = "<table><tr><th>name</th><th>name1</th><th>job</th><th>age</th><th>flower</th></tr>";
       for (let i = 0; i < results.length; i++) {
         // 各データを収めた表の列を生成
         msg += "<tr>";
@@ -109,6 +109,7 @@
         msg += "<td class='num'>" + results[i].name1 + "</td>";
         msg += "<td class='num'>" + results[i].job + "</td>";
         msg += "<td class='num'>" + results[i].age + "</td>";
+        msg += "<td class='num'>" + results[i].flower + "</td>";
         msg += "</tr>";
       }
       // テーブルのテイラを生成
@@ -129,8 +130,8 @@
     <input id="name1" type="text" placeholder=" honnmyou">
   </div>
    <div>
-    <label for="job">job:</label>
-    <input id="job" type="text" placeholder="job">
+    <label for="flower">flower:</label>
+    <input id="flower" type="text" placeholder="flower">
   </div>
    <div>
     <label for="age">age:</label>
@@ -139,19 +140,19 @@
   <div id="button">
     <button class="btn" onclick="fetchAll()">8LOOM
     </button>
-    <button class="btn" onclick="searchName()">名前</button>
-    <button class="btn" onclick="searchName1()">本名</button>
+    <button class="btn1" onclick="searchName()">名前</button>
+    <button class="btn2" onclick="searchName1()">本名</button>
     <br>
-    <button class="btn" onclick="searchJob()">事務所</button>
-    <button class="btn" onclick="searchAge()">年齢</button>
+    <button class="btn3" onclick="searchJob()">花</button>
+    <button class="btn4" onclick="searchAge()">年齢</button>
   </div>
   <div id="message">message area</div>
   <div id="button">
     
-    <button class="btn" onclick="searchName3()">名前順</button>
-    <button class="btn" onclick="searchName4()">本名順</button>
-    <button class="btn" onclick="searchJob1()">事務所順</button>
-    <button class="btn" onclick="searchAge1()">年齢順 </button>
+    <button class="btn1" onclick="searchName3()">名前順</button>
+    <button class="btn2" onclick="searchName4()">本名順</button>
+    <button class="btn3" onclick="searchJob1()">事務所順</button>
+    <button class="btn4" onclick="searchAge1()">年齢順 </button>
   </div>
 </body>
 
